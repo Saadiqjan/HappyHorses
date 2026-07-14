@@ -1,0 +1,25 @@
+# Build output
+/build/
+
+# Compiled binaries
+*.elf
+*.nds
+*.map
+
+# Dependency files
+*.d
+
+# Object files
+*.o
+
+# Generated assembly from grit
+*.s
+
+# Generated headers from grit (optional, see below)
+*.h
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
