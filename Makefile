@@ -26,7 +26,7 @@ INCLUDES := include
 DATA     :=
 GRAPHICS := gfx
 AUDIO    :=
-ICON     :=
+ICON     := icon.bmp
 
 # specify a directory which contains the nitro filesystem
 # this is relative to the Makefile
@@ -132,23 +132,7 @@ export INCLUDE  := $(foreach dir,$(INCLUDES),-iquote $(CURDIR)/$(dir))\
                    -I$(CURDIR)/$(BUILD)
 export LIBPATHS := $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
-ifeq ($(strip $(ICON)),)
-  icons := $(wildcard *.bmp)
-
-  ifneq (,$(findstring $(TARGET).bmp,$(icons)))
-    export GAME_ICON := $(CURDIR)/$(TARGET).bmp
-  else
-    ifneq (,$(findstring icon.bmp,$(icons)))
-      export GAME_ICON := $(CURDIR)/icon.bmp
-    endif
-  endif
-else
-  ifeq ($(suffix $(ICON)), .grf)
-    export GAME_ICON := $(CURDIR)/$(ICON)
-  else
-    export GAME_ICON := $(CURDIR)/$(BUILD)/$(notdir $(basename $(ICON))).grf
-  endif
-endif
+export GAME_ICON := $(CURDIR)/$(ICON)
 
 .PHONY: $(BUILD) clean
 
@@ -200,10 +184,10 @@ $(SOUNDBANK) : $(MODFILES)
 #---------------------------------------------------------------------------------
 # Convert non-GRF game icon to GRF if needed
 #---------------------------------------------------------------------------------
-$(GAME_ICON): $(notdir $(ICON))
+#$(GAME_ICON): $(notdir $(ICON))
 #---------------------------------------------------------------------------------
-	@echo convert $(notdir $<)
-	@grit $< -g -gt -gB4 -gT FF00FF -m! -p -pe 16 -fh! -ftr
+#	@echo convert $(notdir $<)
+#	@grit $< -g -gt -gB4 -gT FF00FF -m! -p -pe 16 -fh! -ftr
 
 -include $(DEPSDIR)/*.d
 
