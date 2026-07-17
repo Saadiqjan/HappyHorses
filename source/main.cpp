@@ -37,6 +37,9 @@ void initVideo()
     	VRAM_D_LCD
 	);
 
+	// Allocate VRAM bank E for sprites
+	vramSetBankE(VRAM_E_MAIN_SPRITE);
+
     // Main screen (top)
     videoSetMode(
         MODE_5_2D |
