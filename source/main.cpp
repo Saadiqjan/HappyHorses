@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "titleScreen.h"
+#include "titleScreenSub.h"
 
 static const int DMA_CHANNEL = 3;
 
@@ -13,7 +14,8 @@ void displayMenuBackgrounds();
 int main(void)
 {
 	powerOn(POWER_ALL_2D);
-
+	
+	lcdMainOnBottom();
 	initVideo();
 	initBackgrounds();
 
@@ -106,16 +108,16 @@ void displayMenuBackgrounds()
 
     // Copy palette for sub BG
     dmaCopy(
-        titleScreenPal,
+        titleScreenSubPal,
         BG_PALETTE_SUB,
-        titleScreenPalLen
+        titleScreenSubPalLen
     );
 
     // Bottom screen
     dmaCopyHalfWords(
         DMA_CHANNEL,
-        titleScreenBitmap,
+        titleScreenSubBitmap,
         (uint16*)BG_BMP_RAM_SUB(0),
-        titleScreenBitmapLen
+        titleScreenSubBitmapLen
     );
 }
