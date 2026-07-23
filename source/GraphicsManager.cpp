@@ -13,6 +13,13 @@
 #include "titleScreen.h"
 #include "titleScreenSub.h"
 
+void GraphicsManager::init()
+{
+    initVideo();
+    initBackgrounds();
+    initSprites();
+}
+
 void GraphicsManager::initVideo()
 {
     // Allocate VRAM
@@ -77,7 +84,31 @@ void GraphicsManager::initBackgrounds()
     REG_BG3Y_SUB = 0;
 }
 
-void::GraphicsManager::loadTitleScreen()
+void GraphicsManager::initSprites()
+{
+    for (int i = 0; i < SPRITE_COUNT; i++) {
+        oamMain->oamBuffer[i].attribute[0] = ATTR0_DISABLED;
+        oamMain->oamBuffer[i].attribute[1] = 0;
+        oamMain->oamBuffer[i].attribute[2] = 0;
+    }
+    for (int i = 0; i < MATRIX_COUNT; i++) {
+        oamMain->matrixBuffer[i].hdx = 1 << 8;
+        oamMain->matrixBuffer[i].hdy = 0;
+        oamMain->matrixBuffer[i].vdx = 0;
+        oamMain->matrixBuffer[i].vdy = 1 << 8;
+    }
+    
+    update(oam);
+}
+
+void GraphicsManager::update()
+{
+    DC_FlushRange(oamMain->oamBuffer, SPRITE_COUNT * sizeof(SpriteEntry));
+    dmaCopyHalfWords(SPRITE_DMA_CHANNEL, oamMain->oamBuffer, OAM,
+                     SPRITE_COUNT * sizeof(SpriteEntry));
+}
+
+void GraphicsManager::loadTitleScreen()
 {
     // Copy palette for main BG
     dmaCopy(

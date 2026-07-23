@@ -18,8 +18,7 @@ void Game::init()
 	
 	lcdMainOnBottom();
 	
-	graphics.initVideo();
-	graphics.initBackgrounds();
+	graphics.init();
 
 	graphics.loadTitleScreen();
 }
