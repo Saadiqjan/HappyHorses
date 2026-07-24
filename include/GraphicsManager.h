@@ -17,7 +17,7 @@ class GraphicsManager {
     private:
         void initVideo();
         void initBackgrounds();
-        void initSprites(OAMTable *oam);
+        void initSprites();
 
         static const int DMA_CHANNEL = 3;
 };
