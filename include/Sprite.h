@@ -11,17 +11,16 @@
 class Sprite {
     public:
         static const int SPRITE_DMA_CHANNEL = 3;
-        
+
         Sprite();
 
-        void init(OamState* oam, SpriteSize size, SpriteColorFormat colorFormat);
+        init(OamState* oam, int id, SpriteSize size, SpriteColorFormat format, const void* tiles, int tileLength);
 
-        void setGraphics(const void* tiles, int tilesLen);
         void setPosition(int x, int y);
         void setVisible(bool visible);
         void rotate(int angle);
 
-        void update();
+        void draw();
     private:
         OamState* oam;
 
