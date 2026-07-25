@@ -10,6 +10,8 @@
 
 class Sprite {
     public:
+        static const int SPRITE_DMA_CHANNEL = 3;
+        
         Sprite();
 
         void init(OamState* oam, SpriteSize size, SpriteColorFormat colorFormat);
