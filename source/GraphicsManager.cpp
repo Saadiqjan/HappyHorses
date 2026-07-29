@@ -88,7 +88,7 @@ void GraphicsManager::initSprites()
 {
     oamInit(&oamMain, SpriteMapping_1D_32, false);
     
-    update(oamMain);
+    update();
 }
 
 void GraphicsManager::update()

@@ -8,13 +8,29 @@
 
 #pragma once
 
+#include <nds.h>
+
 class Sprite {
     public:
         static const int SPRITE_DMA_CHANNEL = 3;
 
         Sprite();
 
-        init(OamState* oam, int id, SpriteSize size, SpriteColorFormat format, const void* tiles, int tileLength);
+        void init(OamState* oam,
+                  int spriteId,
+                  int affineId,
+                  bool affine,
+                  int paletteIdx,
+                  int priority,
+                  bool hidden,
+                  bool doubleSize,
+                  bool flipHor,
+                  bool flipVer,
+                  bool mosaic,
+                  SpriteSize size,
+                  SpriteColorFormat format,
+                  const void* tiles,
+                  int tileLength);
 
         void setPosition(int x, int y);
         void setVisible(bool hidden);

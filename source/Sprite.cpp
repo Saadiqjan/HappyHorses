@@ -6,7 +6,9 @@
  * Description: Sprite wrapper class
  */
 
-#include <nds.h>
+#include "Sprite.h"
+
+ #include <nds.h>
 
 Sprite::Sprite()
     : oam(nullptr),
@@ -22,7 +24,7 @@ Sprite::Sprite()
       x(0),
       y(0),
       size(SpriteSize_32x32),
-      format(SpriteColorFormat_256Color),
+      colorFormat(SpriteColorFormat_256Color),
       gfx(nullptr)
 {
 }
@@ -39,7 +41,7 @@ void Sprite::init(OamState* oam,
                   bool flipVer,
                   bool mosaic,
                   SpriteSize size,
-                  SpriteColorFormat format,
+                  SpriteColorFormat colorFormat,
                   const void* tiles,
                   int tileLength)
 {
@@ -55,14 +57,14 @@ void Sprite::init(OamState* oam,
     this->flipVer = flipVer;
     this->mosaic = mosaic;
     this->size = size;
-    this->format = format;
+    this->colorFormat = colorFormat;
 
-    gfx = oamAllocateGfx(oam, size, format);
+    gfx = oamAllocateGfx(oam, size, colorFormat);
 
     dmaCopyHalfWords(SPRITE_DMA_CHANNEL, 
                    tiles,
                    gfx,
-                   tilesLength);
+                   tileLength);
 }
 
 void Sprite::draw()
@@ -77,7 +79,7 @@ void Sprite::draw()
             angle
         );
     }
-    
+
     oamSet(&oamMain,
            spriteId, // Sprite ID
            x, y, // X, Y
@@ -116,10 +118,10 @@ void Sprite::setScale(int scaleX, int scaleY)
 
 void Sprite::flipH()
 {
-    flipHor = !flipHor
+    flipHor = !flipHor;
 }
 
 void Sprite::flipV()
 {
-    flipVer = !flipVer
+    flipVer = !flipVer;
 }
