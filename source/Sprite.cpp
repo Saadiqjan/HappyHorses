@@ -6,9 +6,19 @@
  * Description: Sprite wrapper class
  */
 
+#include <nds.h>
+
 Sprite::Sprite()
     : oam(nullptr),
-      id(0),
+      spriteId(-1),
+      affineId(-1),
+      affine(false),
+      paletteIdx(0),
+      priority(OBJPRIORITY_0),
+      hidden(false),
+      doubleSize(false),
+      flipHor(false),
+      flipVer(false),
       x(0),
       y(0),
       size(SpriteSize_32x32),
@@ -18,14 +28,32 @@ Sprite::Sprite()
 }
 
 void Sprite::init(OamState* oam,
-                  int id,
+                  int spriteId,
+                  int affineId,
+                  bool affine,
+                  int paletteIdx,
+                  int priority,
+                  bool hidden,
+                  bool doubleSize,
+                  bool flipHor,
+                  bool flipVer,
+                  bool mosaic,
                   SpriteSize size,
                   SpriteColorFormat format,
                   const void* tiles,
                   int tileLength)
 {
     this->oam = oam;
-    this->id = id;
+    this->spriteId = spriteId;
+    this->affineId = affineId;
+    this->affine = affine;
+    this->paletteIdx = paletteIdx;
+    this->priority = priority;
+    this->hidden = hidden;
+    this->doubleSize = doubleSize;
+    this->flipHor = flipHor;
+    this->flipVer = flipVer;
+    this->mosaic = mosaic;
     this->size = size;
     this->format = format;
 
@@ -39,18 +67,29 @@ void Sprite::init(OamState* oam,
 
 void Sprite::draw()
 {
+    if (affine)
+    {
+        oamRotateScale(
+            &oamMain,
+            affineId,
+            scaleX,
+            scaleY,
+            angle
+        );
+    }
+    
     oamSet(&oamMain,
            spriteId, // Sprite ID
            x, y, // X, Y
-           0, // Priority
-           0, // Palette index
+           priority, // Priority
+           paletteIdx, // Palette index
            size, colorFormat, // Size, format
            gfx,  // Graphics offset
-           -1, // Affine index (unused in this example)
-           false, // Double size for affine sprites
+           affineId, // Affine index
+           doubleSize, // Double size for affine sprites
            hidden, // Hide
            flipHor, flipVer, // H flip, V flip
-           false); // Mosaic
+           mosaic); // Mosaic
 }
 
 void Sprite::setPosition(int x, int y)
@@ -64,6 +103,17 @@ void Sprite::setVisible(bool hidden)
     this->hidden = hidden;
 }
 
+void Sprite::rotate(int angle)
+{
+    this->angle = angle;
+}
+
+void Sprite::setScale(int scaleX, int scaleY)
+{
+    this->scaleX = scaleX;
+    this->scaleY = scaleY;
+}
+
 void Sprite::flipH()
 {
     flipHor = !flipHor
@@ -72,9 +122,4 @@ void Sprite::flipH()
 void Sprite::flipV()
 {
     flipVer = !flipVer
-}
-
-void Sprite::rotate(int angle)
-{
-    this->angle = angle;
 }
