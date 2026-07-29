@@ -17,8 +17,10 @@ class Sprite {
         init(OamState* oam, int id, SpriteSize size, SpriteColorFormat format, const void* tiles, int tileLength);
 
         void setPosition(int x, int y);
-        void setVisible(bool visible);
+        void setVisible(bool hidden);
         void rotate(int angle);
+        void flipH();
+        void flipV();
 
         void draw();
     private:
@@ -31,6 +33,11 @@ class Sprite {
 
         SpriteSize size;
         SpriteColorFormat colorFormat;
+
+        bool hidden;
+        bool flipHor;
+        bool flipVer;
+        int angle;
 
         u16* gfx;
 };
