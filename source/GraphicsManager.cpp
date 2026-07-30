@@ -109,7 +109,7 @@ void GraphicsManager::loadTitleScreen()
     dmaCopyHalfWords(
         DMA_CHANNEL,
         titleScreenBitmap,
-        (uint16*)BG_BMP_RAM(0),
+        BG_BMP_RAM(0),
         titleScreenBitmapLen
     );
 
@@ -125,7 +125,7 @@ void GraphicsManager::loadTitleScreen()
     dmaCopyHalfWords(
         DMA_CHANNEL,
         titleScreenSubBitmap,
-        (uint16*)BG_BMP_RAM_SUB(0),
+        BG_BMP_RAM_SUB(0),
         titleScreenSubBitmapLen
     );
 }

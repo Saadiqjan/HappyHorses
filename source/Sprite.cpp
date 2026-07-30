@@ -8,23 +8,23 @@
 
 #include "Sprite.h"
 
- #include <nds.h>
+#include <nds.h>
 
 Sprite::Sprite()
     : oam(nullptr),
       spriteId(-1),
       affineId(-1),
-      affine(false),
       paletteIdx(0),
       priority(OBJPRIORITY_0),
-      hidden(false),
-      doubleSize(false),
-      flipHor(false),
-      flipVer(false),
       x(0),
       y(0),
       size(SpriteSize_32x32),
       colorFormat(SpriteColorFormat_256Color),
+      affine(false),
+      hidden(false),
+      doubleSize(false),
+      flipHor(false),
+      flipVer(false),
       gfx(nullptr)
 {
 }
