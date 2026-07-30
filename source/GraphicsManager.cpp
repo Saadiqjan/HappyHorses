@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 21, 2026
- * Modified Date: Jul 21, 2026
+ * Modified Date: Jul 29, 2026
  * Filename: GraphicsManager.cpp
  * Project Name: HappyHorses
  * Description: Manages setting up and loading graphics

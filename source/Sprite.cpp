@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 22, 2026
- * Modified Date: Jul 25, 2026
+ * Modified Date: Jul 29, 2026
  * Filename: Sprite.cpp
  * Project Name: HappyHorses
  * Description: Sprite wrapper class
