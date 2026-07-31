@@ -1,68 +1,98 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 22, 2026
- * Modified Date: Jul 29, 2026
+ * Modified Date: Jul 31, 2026
  * Filename: Sprite.h
  * Project Name: HappyHorses
  * Description: Header file for sprites
  */
 
 #pragma once
-
 #include <nds.h>
 
-class Sprite {
-    public:
-        static const int SPRITE_DMA_CHANNEL = 3;
+struct SpriteConfig
+{
+    OamState* oam       = nullptr;
+    int spriteId         = -1;
+    int affineId         = -1;
+    bool affine           = false;
+    int paletteIdx       = 0;
+    ObjPriority priority = OBJPRIORITY_0;
+    bool hidden           = false;
+    bool doubleSize       = false;
+    bool flipHor          = false;
+    bool flipVer          = false;
+    bool mosaic           = false;
+    SpriteSize size               = SpriteSize_32x32;
+    SpriteColorFormat colorFormat = SpriteColorFormat_256Color;
 
-        Sprite();
+    const void* tiles      = nullptr;
+    int tileLength    = 0;
+    int frameCount         = 1;
+};
 
-        void init(OamState* oam,
-                  int spriteId,
-                  int affineId,
-                  bool affine,
-                  int paletteIdx,
-                  int priority,
-                  bool hidden,
-                  bool doubleSize,
-                  bool flipHor,
-                  bool flipVer,
-                  bool mosaic,
-                  SpriteSize size,
-                  SpriteColorFormat format,
-                  const void* tiles,
-                  int tileLength);
+class Sprite
+{
+public:
+    static const int SPRITE_DMA_CHANNEL = 3;
 
-        void setPosition(int x, int y);
-        void setVisible(bool hidden);
-        void rotate(int angle);
-        void setScale(int scaleX, int scaleY);
-        void flipH();
-        void flipV();
+    Sprite();
+    ~Sprite();
 
-        void draw();
-    private:
-        OamState* oam;
+    Sprite(const Sprite&) = delete;
+    Sprite& operator=(const Sprite&) = delete;
 
-        int spriteId;
-        int affineId;
-        int paletteIdx;
-        int priority;
+    Sprite(Sprite&& other) noexcept;
+    Sprite& operator=(Sprite&& other) noexcept;
 
-        int x;
-        int y;
-        int scaleX = 1 << 8;
-        int scaleY = 1 << 8;
+    void init(const SpriteConfig& cfg);
+    void unload();
 
-        SpriteSize size;
-        SpriteColorFormat colorFormat;
+    void draw();
 
-        bool affine;
-        bool hidden;
-        bool doubleSize;
-        bool flipHor;
-        bool flipVer;
-        bool mosaic;
-        int angle = 0;
+    void setPosition(int x, int y);
+    void move(int dx, int dy);
 
-        u16* gfx;
+    void setVisible(bool visible);
+    void setFlip(bool h, bool v);
+    void toggleFlipH();
+    void toggleFlipV();
+
+    void setFrame(int frame);
+    int  frame() const { return currentFrame; }
+    int  frameCount() const { return numFrames; }
+
+    void rotate(int angle);
+    void setScale(int scaleX, int scaleY);
+
+    int x() const { return posX; }
+    int y() const { return posY; }
+    bool isLoaded() const { return gfx != nullptr; }
+
+private:
+    OamState* oam   = nullptr;
+    int spriteId    = -1;
+    int affineId    = -1;
+    int paletteIdx  = 0;
+    ObjPriority priority = OBJPRIORITY_0;
+
+    int posX = 0, posY = 0;
+
+    SpriteSize size               = SpriteSize_32x32;
+    SpriteColorFormat colorFormat = SpriteColorFormat_256Color;
+
+    bool affine     = false;
+    bool hidden     = false;
+    bool doubleSize = false;
+    bool flipHor    = false;
+    bool flipVer    = false;
+    bool mosaic     = false;
+
+    int angle   = 0;
+    int scaleX  = 1 << 8; // identity scale, 20.12-ish fixed point (verify against oamRotateScale)
+    int scaleY  = 1 << 8;
+
+    void* gfx              = nullptr;
+    int   frameSizeBytes   = 0;
+    int   numFrames         = 1;
+    int   currentFrame      = 0;
 };
