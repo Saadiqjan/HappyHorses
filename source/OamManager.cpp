@@ -86,3 +86,8 @@ int OamManager::freeCount() const
 
     return count;
 }
+
+OamState* OamManager::getOam()
+{
+    return oam;
+}

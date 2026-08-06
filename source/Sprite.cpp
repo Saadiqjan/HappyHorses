@@ -9,7 +9,6 @@
 #include "Sprite.h"
 #include <utility>
 
-
 Sprite::Sprite() = default;
 
 Sprite::~Sprite()
