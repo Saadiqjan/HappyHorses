@@ -1,12 +1,14 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Aug 3, 2026
- * Modified Date: Aug 3, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: OamManager.cpp
  * Project Name: HappyHorses
  * Description: Keeps track of used slots in object attribute memory
  */
 
 #include "OamManager.h"
+
+using namespace std;
 
 OamManager::OamManager(OamState* oam)
     : oam(oam)
@@ -87,7 +89,7 @@ int OamManager::freeCount() const
     return count;
 }
 
-OamState* OamManager::getOam()
+OamState* OamManager::getOam() const
 {
     return oam;
 }

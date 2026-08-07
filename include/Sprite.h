@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 22, 2026
- * Modified Date: Jul 31, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: Sprite.h
  * Project Name: HappyHorses
  * Description: Header file for sprites
@@ -68,6 +68,7 @@ public:
     int y() const { return posY; }
     bool isLoaded() const { return gfx != nullptr; }
 
+    int getSpriteId() const { return spriteId; }
 private:
     OamState* oam   = nullptr;
     int spriteId    = -1;

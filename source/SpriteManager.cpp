@@ -1,15 +1,16 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Aug 1, 2026
- * Modified Date: Aug 5, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: SpriteManager.cpp
  * Project Name: HappyHorses
  * Description: Keep track of allocated sprites
  */
 
 #include "SpriteManager.h"
+#include "Sprite.h"
 #include <algorithm>
 
-using std;
+using namespace std;
 
 SpriteManager::SpriteManager(OamState* oam)
     : oam(oam), oamMgr(oam)
@@ -24,7 +25,7 @@ int SpriteManager::loadPalette(const void* paletteData, size_t lengthBytes)
         ? SPRITE_PALETTE
         : SPRITE_PALETTE_SUB;
 
-    dmaCopyHalfWords(SPRITE_DMA_CHANNEL, paletteData, dest, lengthBytes);
+    dmaCopyHalfWords(Sprite::SPRITE_DMA_CHANNEL, paletteData, dest, lengthBytes);
 
     return slot;
 }
@@ -56,7 +57,7 @@ void SpriteManager::destroySprite(Sprite* target)
 
     if (it != sprites.end())
     {
-        oamMgr.free((*it)->spriteId());
+        oamMgr.free((*it)->getSpriteId());
         sprites.erase(it);
     }
 }

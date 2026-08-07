@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 31, 2026
- * Modified Date: Aug 1, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: MetaSprite.cpp
  * Project Name: HappyHorses
  * Description: store a larger sprite made up of smaller sprites
@@ -20,6 +20,7 @@ bool MetaSprite::addPart(OamManager& mgr, const SpriteConfig& cfgIn, int offsetX
 
     SpriteConfig cfg = cfgIn;
     cfg.oam = mgr.getOam();
+
     cfg.spriteId = mgr.allocate();
     if (cfg.spriteId == -1) return false;
 

@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Aug 1, 2026
- * Modified Date: Aug 5, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: SpriteManager.h
  * Project Name: HappyHorses
  * Description: Header file for sprite manager
@@ -9,11 +9,12 @@
 #pragma once
 #include <nds.h>
 #include "Sprite.h"
+#include "MetaSprite.h"
 #include "OamManager.h"
 #include <vector>
 #include <memory>
 
-using std;
+using namespace std;
 
 class SpriteManager {
     public:

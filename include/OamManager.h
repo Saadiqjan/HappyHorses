@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Aug 3, 2026
- * Modified Date: Aug 3, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: OamManager.h
  * Project Name: HappyHorses
  * Description: Header file for OAM manager
@@ -10,11 +10,11 @@
 #include <nds.h>
 #include <array>
 
-using std;
+using namespace std;
 
 class OamManager {
     public:
-        static constexpr MAX_SPRITES = 128;
+        static constexpr int MAX_SPRITES = 128;
         static constexpr int MAX_AFFINE = 32;
 
         explicit OamManager(OamState *oam);
@@ -25,7 +25,7 @@ class OamManager {
         int allocateAffine();
         void freeAffine(int index);
 
-        bool isAllocated() const;
+        bool isAllocated(int index) const;
         int freeCount() const;
 
         OamState* getOam() const;

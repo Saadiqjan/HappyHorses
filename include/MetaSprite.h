@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 31, 2026
- * Modified Date: Jul 31, 2026
+ * Modified Date: Aug 6, 2026
  * Filename: MetaSprite.h
  * Project Name: HappyHorses
  * Description: Header file for meta sprite

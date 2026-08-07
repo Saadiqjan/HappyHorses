@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Sprite.h"
+
 class Button {
     public:
         Button(int x, int y, int width, int height);
@@ -26,4 +28,8 @@ class Button {
 
         int width;
         int height;
+
+        Sprite leftSprite;
+        Sprite middleSprite;
+        Sprite rightSprite;
 };
