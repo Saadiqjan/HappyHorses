@@ -9,14 +9,26 @@
 #pragma once
 
 #include "GraphicsManager.h"
+#include "GameState.h"
 
 class Game {
 	public:
 		void init();
 		void run();
+
+		void transitionTo(GameStateType newState);
 	private:
 		void update();
 		void draw();
+
+		void applyPendingTransition();
+
+		void enterState(GameState state);
+		void exitState(GameState state);
+
+		GameStateType currentState = GameState::TitleScreen;
+    	GameStateType pendingState = GameState::TitleScreen;
+    	bool transitionRequested = false;
 
 		GraphicsManager graphics;
 };

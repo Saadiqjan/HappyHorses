@@ -9,9 +9,9 @@
 #pragma once
 #include <cstdint>
 
-enum class GameStateType : uint8_t
+enum class GameState : uint8_t
 {
-    TitleScreen
+    TitleScreen,
     SelectSave,
     Gameplay,
     PauseScreen
