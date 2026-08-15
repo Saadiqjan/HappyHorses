@@ -14,6 +14,9 @@ class GraphicsManager {
         void update();
 
         void loadTitleScreen();
+
+        void unloadMainBG(int layer);
+        void unloadSubBG(int layer);
     private:
         void initVideo();
         void initBackgrounds();

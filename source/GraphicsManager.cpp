@@ -129,3 +129,13 @@ void GraphicsManager::loadTitleScreen()
         titleScreenSubBitmapLen
     );
 }
+
+void GraphicsManager::unloadMainBG(int layer)
+{
+    dmaFillWords(0, BG_BMP_RAM(layer), 256 * 256 * 2);
+}
+
+void GraphicsManager::unloadSubBG(int layer)
+{
+    dmaFillWords(0, BG_BMP_RAM_SUB(layer), 256 * 256 * 2);
+}
