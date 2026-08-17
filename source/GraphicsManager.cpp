@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 21, 2026
- * Modified Date: Jul 29, 2026
+ * Modified Date: Aug 17, 2026
  * Filename: GraphicsManager.cpp
  * Project Name: HappyHorses
  * Description: Manages setting up and loading graphics
@@ -52,36 +52,11 @@ void GraphicsManager::initVideo()
 
 void GraphicsManager::initBackgrounds()
 {
-    // Top screen background (BG3)
-    REG_BG3CNT = BG_BMP8_256x256 |
-                 BG_BMP_BASE(0) |
-                 BG_PRIORITY(3);
+    bgIdsMain[3] = bgInit(3, BgType_Bmp8, BgSize_B8_256x256, 0, 0);
+    bgSetPriority(bgIdsMain[3], 3);
 
-    // Identity transformation matrix
-    REG_BG3PA = 1 << 8;
-    REG_BG3PB = 0;
-    REG_BG3PC = 0;
-    REG_BG3PD = 1 << 8;
-
-    // Position at top-left
-    REG_BG3X = 0;
-    REG_BG3Y = 0;
-
-
-    // Bottom screen background (BG3)
-    REG_BG3CNT_SUB = BG_BMP8_256x256 |
-                     BG_BMP_BASE(0) |
-                     BG_PRIORITY(3);
-
-    // Identity transformation matrix
-    REG_BG3PA_SUB = 1 << 8;
-    REG_BG3PB_SUB = 0;
-    REG_BG3PC_SUB = 0;
-    REG_BG3PD_SUB = 1 << 8;
-
-    // Position at top-left
-    REG_BG3X_SUB = 0;
-    REG_BG3Y_SUB = 0;
+    bgIdsSub[3] = bgInitSub(3, BgType_Bmp8, BgSize_B8_256x256, 0, 0);
+    bgSetPriority(bgIdsSub[3], 3);
 }
 
 void GraphicsManager::initSprites()
@@ -130,12 +105,24 @@ void GraphicsManager::loadTitleScreen()
     );
 }
 
-void GraphicsManager::unloadMainBG(int layer)
+int GraphicsManager::bgId(bool sub, int layer) const
 {
-    dmaFillWords(0, BG_BMP_RAM(layer), 256 * 256 * 2);
+    return sub ? bgIdsSub[layer] : bgIdsMain[layer];
 }
 
-void GraphicsManager::unloadSubBG(int layer)
+void GraphicsManager::clearBitmapLayer(bool sub, int layer, int widthPx, int heightPx, int bytesPerPixel)
 {
-    dmaFillWords(0, BG_BMP_RAM_SUB(layer), 256 * 256 * 2);
+    int id = bgId(sub, layer);
+    if (id == -1) return; // not initialized — no-op rather than crash on a null-ish pointer
+
+    dmaFillWords(0, bgGetGfxPtr(id), widthPx * heightPx * bytesPerPixel);
+}
+
+void GraphicsManager::clearTiledLayer(bool sub, int layer, int mapWidthTiles, int mapHeightTiles)
+{
+    int id = bgId(sub, layer);
+    if (id == -1) return;
+
+    u16* map = (u16*)bgGetMapPtr(id);
+    dmaFillWords(0, map, mapWidthTiles * mapHeightTiles * sizeof(u16));
 }
