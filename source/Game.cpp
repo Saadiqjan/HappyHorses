@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Jul 19, 2026
- * Modified Date: Jul 21, 2026
+ * Modified Date: Aug 17, 2026
  * Filename: Game.cpp
  * Project Name: HappyHorses
  * Description: Game loop will be handled here
@@ -45,7 +45,11 @@ void Game::update()
 	{
 		case GameState::TitleScreen:
 			if (keys_held & KEY_A)
-            	gameState = GameState::Gameplay;
+			{
+				graphics.clearBitmapLayer(false, 3, 256, 256, 1);
+				graphics.clearBitmapLayer(true, 3, 256, 256, 1);
+            	transitionTo(GameState::Gameplay);
+			}
 			break;
 		case GameState::SelectSave:
 			break;
@@ -95,9 +99,9 @@ void Game::applyPendingTransition()
 
 void Game::exitState(GameState state)
 {
-    spriteManagerMain.clear();
-    spriteManagerSub.clear();
-    textLayer.clearAll();
+    // spriteManagerMain.clear();
+    // spriteManagerSub.clear();
+    // textLayer.clearAll();
 
     switch (state)
 	{
