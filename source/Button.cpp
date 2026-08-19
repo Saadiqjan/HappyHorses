@@ -32,7 +32,7 @@ void Button::createMulti()
 bool Button::addPart(const SpriteConfig& cfg, int offsetX, int offsetY)
 {
     if (auto* m = std::get_if<MetaSprite*>(&renderable))
-        return (*m)->addPart(spriteMgr.oamManager(), cfg, offsetX, offsetY);
+        return (*m)->addPart(spriteMgr.getOamManager(), cfg, offsetX, offsetY);
     return false; // createMulti() wasn't called first
 }
 
@@ -44,8 +44,8 @@ void Button::finalizeMulti(int w, int h)
 
 void Button::setPosition(int x, int y)
 {
-    posX = x;
-    posY = y;
+    this->x = x;
+    this->y = y;
 
     std::visit([x, y](auto&& r)
     {
@@ -74,11 +74,11 @@ void Button::setPressed(bool pressed)
 void Button::draw()
 {
     if (!label.empty())
-        textLayer.drawTextCentered(posX, posY, width, height, label);
+        textLayer.drawTextCentered(x, y, width, height, label);
 }
 
 bool Button::contains(int touchX, int touchY) const
 {
-    return touchX >= posX && touchX < posX + width &&
-           touchY >= posY && touchY < posY + height;
+    return touchX >= x && touchX < x + width &&
+           touchY >= y && touchY < y + height;
 }

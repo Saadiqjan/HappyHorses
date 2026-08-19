@@ -26,7 +26,7 @@ class Button {
     
         bool createSingle(const SpriteConfig& cfg, int width, int height);
 
-        bool createMulti();
+        void createMulti();
         bool addPart(const SpriteConfig& cfg, int offsetX, int offsetY);
         void finalizeMulti(int width, int height);
 
