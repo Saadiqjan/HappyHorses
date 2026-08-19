@@ -16,6 +16,7 @@ public:
     TextLayer(u16* mapBuffer, int mapWidthTiles, char firstChar = ' ');
 
     void drawText(int tileX, int tileY, const std::string& text);
+    void drawTextCentered(int pixelBoxX, int pixelBoxY, int pixelBoxW, int pixelBoxH, const std::string& text);
     void clearRow(int tileY, int startTileX, int lengthTiles);
     void clear();
 
@@ -23,4 +24,5 @@ private:
     u16* mapBuffer;
     int mapWidthTiles;
     char firstChar;
+    static constexpr int TILE_PX = 8;
 };

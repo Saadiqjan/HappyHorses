@@ -23,6 +23,19 @@ void TextLayer::drawText(int tileX, int tileY, const std::string& text)
     }
 }
 
+void TextLayer::drawTextCentered(int pixelBoxX, int pixelBoxY, int pixelBoxW, int pixelBoxH, const std::string& text)
+{
+    int textPxWidth = (int)text.size() * TILE_PX;
+
+    int px = pixelBoxX + (pixelBoxW - textPxWidth) / 2;
+    int py = pixelBoxY + (pixelBoxH - TILE_PX) / 2;
+
+    int tileX = px / TILE_PX;
+    int tileY = py / TILE_PX;
+
+    drawText(tileX, tileY, text);
+}
+
 void TextLayer::clearRow(int tileY, int startTileX, int lengthTiles)
 {
     for (int i = 0; i < lengthTiles; ++i)
