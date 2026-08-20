@@ -23,6 +23,13 @@ using namespace std;
 class Button {
     public:
         Button(SpriteManager& spriteMgr, TextLayer& textLayer);
+        ~Button();
+
+        Button(const Button&) = delete;
+        Button& operator=(const Button&) = delete;
+
+        Button(Button&& other) noexcept;
+        Button& operator=(Button&& other) noexcept;
     
         bool createSingle(const SpriteConfig& cfg, int width, int height);
 
@@ -34,20 +41,22 @@ class Button {
         void setLabel(const std::string& text);
         void setPressed(bool pressed);
 
+        void clear();
+
         void draw();
 
         bool contains(int touchX, int touchY) const;
-        bool isLoaded() const { return !std::holds_alternative<std::monostate>(renderable); }
+        bool isLoaded() const { return !holds_alternative<monostate>(renderable); }
     private:
-        SpriteManager& spriteMgr;
-        TextLayer& textLayer;
+        SpriteManager* spriteMgr;
+        TextLayer* textLayer;
 
         int x = 0;
         int y = 0;
         int width = 0;
         int height = 0;
 
-        using Renderable = variant<std::monostate, Sprite*, MetaSprite*>;
+        using Renderable = variant<monostate, Sprite*, MetaSprite*>;
         Renderable renderable;
         string label;
 };
