@@ -61,7 +61,7 @@ void GraphicsManager::initBackgrounds()
 
 void GraphicsManager::initSprites()
 {
-    oamInit(&oamMain, SpriteMapping_1D_32, false);
+    oamInit(&oamMain, SpriteMapping_1D_64, false);
     
     update();
 }
