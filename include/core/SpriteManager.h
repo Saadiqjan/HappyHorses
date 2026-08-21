@@ -8,8 +8,8 @@
 
 #pragma once
 #include <nds.h>
-#include "Sprite.h"
-#include "MetaSprite.h"
+#include "../graphics/Sprite.h"
+#include "../graphics/MetaSprite.h"
 #include "OamManager.h"
 #include <vector>
 #include <memory>

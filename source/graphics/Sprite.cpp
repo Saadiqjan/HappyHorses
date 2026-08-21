@@ -6,7 +6,7 @@
  * Description: Sprite wrapper class
  */
 
-#include "Sprite.h"
+#include "graphics/Sprite.h"
 #include <utility>
 
 Sprite::Sprite() = default;

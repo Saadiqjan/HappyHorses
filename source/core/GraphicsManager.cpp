@@ -6,7 +6,7 @@
  * Description: Manages setting up and loading graphics
  */
 
-#include "GraphicsManager.h"
+#include "core/GraphicsManager.h"
 
 #include <nds.h>
 

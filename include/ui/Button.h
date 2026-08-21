@@ -13,10 +13,10 @@
 #include <variant>
 #include <type_traits>
 
-#include "TextLayer.h"
-#include "SpriteManager.h"
-#include "Sprite.h"
-#include "MetaSprite.h"
+#include "../core/TextLayer.h"
+#include "../core/SpriteManager.h"
+#include "../graphics/Sprite.h"
+#include "../graphics/MetaSprite.h"
 
 using namespace std;
 

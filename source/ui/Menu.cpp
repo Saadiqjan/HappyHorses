@@ -6,7 +6,7 @@
  * Description: Menu to keep track of menu objects
  */
 
-#include "Menu.h"
+#include "ui/Menu.h"
 
 Menu::Menu(SpriteManager& mgr, TextLayer& layer)
     : spriteMgr(mgr), textLayer(layer)

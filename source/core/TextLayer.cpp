@@ -6,7 +6,7 @@
  * Description: create a tilemap background to display text anywhere on the screen
  */
 
-#include "TextLayer.h"
+#include "core/TextLayer.h"
 
 // TextLayer.cpp
 TextLayer::TextLayer(u16* mapBuffer, int mapWidthTiles, char firstChar)

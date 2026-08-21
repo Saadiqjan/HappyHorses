@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "GraphicsManager.h"
+#include "core/GraphicsManager.h"
 #include "GameState.h"
 
 class Game {

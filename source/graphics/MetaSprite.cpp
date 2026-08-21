@@ -6,8 +6,7 @@
  * Description: store a larger sprite made up of smaller sprites
  */
 
-#include "MetaSprite.h"
-#include "Sprite.h"
+#include "graphics/MetaSprite.h"
 #include <nds.h>
 
 using namespace std;

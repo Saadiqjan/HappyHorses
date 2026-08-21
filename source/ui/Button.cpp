@@ -6,7 +6,7 @@
  * Description: Button class
  */
 
-#include "Button.h"
+#include "ui/Button.h"
 
 Button::Button(SpriteManager& spriteMgr, TextLayer& textLayer)
     : spriteMgr(&spriteMgr), textLayer(&textLayer)

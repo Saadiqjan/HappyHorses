@@ -8,7 +8,7 @@
 
 #pragma once
 #include "Sprite.h"
-#include "OamManager.h"
+#include "../core/OamManager.h"
 #include <vector>
 
 using namespace std;

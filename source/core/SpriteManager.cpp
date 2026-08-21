@@ -6,8 +6,7 @@
  * Description: Keep track of allocated sprites
  */
 
-#include "SpriteManager.h"
-#include "Sprite.h"
+#include "core/SpriteManager.h"
 #include <algorithm>
 
 using namespace std;

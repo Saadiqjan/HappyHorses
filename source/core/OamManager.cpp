@@ -6,7 +6,7 @@
  * Description: Keeps track of used slots in object attribute memory
  */
 
-#include "OamManager.h"
+#include "core/OamManager.h"
 
 using namespace std;
 

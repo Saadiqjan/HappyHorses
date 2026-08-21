@@ -10,9 +10,6 @@
 
 #include <nds.h>
 
-#include "GraphicsManager.h"
-#include "GameState.h"
-
 void Game::init()
 {
 	powerOn(POWER_ALL_2D);

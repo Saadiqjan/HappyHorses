@@ -11,7 +11,7 @@
 #include <nds.h>
 #include <vector>
 
-#include "Button.h"
+#include "../ui/Button.h"
 
 using namespace std;
 

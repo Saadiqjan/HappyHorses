@@ -9,7 +9,7 @@
 #pragma once
 
 #include <nds.h>
-#include "Sprite.h"
+#include "../graphics/Sprite.h"
 
 class Player {
     public:
