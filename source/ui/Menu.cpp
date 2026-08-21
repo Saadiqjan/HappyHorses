@@ -22,6 +22,7 @@ Button& Menu::addButton()
 void Menu::update(int touchX, int touchY, bool touching, bool justReleased)
 {
     lastSelected = -1;
+
     for (size_t i = 0; i < buttons.size(); ++i)
     {
         if (!buttons[i]->isLoaded()) continue;
@@ -42,7 +43,11 @@ void Menu::draw()
 
 Button* Menu::selectedButton() const
 {
-    if (lastSelected < 0 || lastSelected >= (int)buttons.size()) return nullptr;
+    if (lastSelected < 0 || lastSelected >= (int)buttons.size()) 
+    {
+        return nullptr;
+    }
+    
     return buttons[lastSelected].get();
 }
 
