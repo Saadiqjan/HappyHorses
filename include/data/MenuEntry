@@ -1,0 +1,22 @@
+/* Author: Saadiq Shahsamand
+ * Creation Date: Aug 25, 2026
+ * Modified Date: Aug 25, 2026
+ * Filename: MenuEntry.h
+ * Project Name: HappyHorses
+ * Description: menu entry struct
+ */
+
+#pragma once
+
+#include <string>
+#include "../state/GameStateType.h"
+#include "../graphics/Sprite.h"
+#include "../graphics/MetaSprite.h"
+
+using namespace std;
+
+struct MenuEntry {
+    string label;
+    SpriteConfig buttonConfig;
+    GameState target;
+}
