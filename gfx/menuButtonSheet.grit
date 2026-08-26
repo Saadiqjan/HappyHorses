@@ -1,0 +1,17 @@
+# Symbol name
+-s testButton
+
+# Set the warning/log level to 3
+-W3
+
+# not compressed
+-m!
+
+# Tilemap
+-gt
+
+# Set the bit depth to 4 (16 colors)
+-gB4
+
+# Set magenta as transparent colour
+-gTFF00FF
