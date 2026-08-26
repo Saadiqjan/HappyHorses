@@ -1,6 +1,6 @@
 /* Author: Saadiq Shahsamand
  * Creation Date: Aug 25, 2026
- * Modified Date: Aug 25, 2026
+ * Modified Date: Aug 26, 2026
  * Filename: MenuEntry.h
  * Project Name: HappyHorses
  * Description: menu entry struct
