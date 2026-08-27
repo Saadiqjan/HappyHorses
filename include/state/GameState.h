@@ -14,5 +14,6 @@ enum class GameState : uint8_t
     TitleScreen,
     SelectSave,
     Gameplay,
-    PauseScreen
+    PauseScreen,
+    settings
 };
