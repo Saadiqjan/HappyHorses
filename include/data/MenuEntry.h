@@ -18,5 +18,5 @@ using namespace std;
 struct MenuEntry {
     string label;
     SpriteConfig buttonConfig;
-    GameState target;
+    GameStateType target;
 }

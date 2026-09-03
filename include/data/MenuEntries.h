@@ -10,19 +10,19 @@
 
 #include "ButtonConfigs.h"
 #include "MenuEntry.h"
-#include "../state/GameState.h"
+#include "../state/GameStateType.h"
 #include <vector>
 
 using namespace std;
 
 inline const vector<MenuEntry> mainMenuEntries = {
-    { "New game", btnCfgNewGame, GameState::Gameplay },
-    { "Continue", btnCfgContinue, GameState::Gameplay },
-    { "Settings", btnCfgSettings, GameState::settingsS }
+    { "New game", btnCfgNewGame, GameStateType::Gameplay },
+    { "Continue", btnCfgContinue, GameStateType::Gameplay },
+    { "Settings", btnCfgSettings, GameStateType::settingsS }
 };
 
 inline const vector<MenuEntry> saveMenuEntries = {
-    { "Save 1", btnCfgSave1, GameState::Gameplay },
-    { "Save 2", btnCfgSave2, GameState::Gameplay },
-    { "Save 3", btnCfgSave3, GameState::Gameplay }
+    { "Save 1", btnCfgSave1, GameStateType::Gameplay },
+    { "Save 2", btnCfgSave2, GameStateType::Gameplay },
+    { "Save 3", btnCfgSave3, GameStateType::Gameplay }
 };
