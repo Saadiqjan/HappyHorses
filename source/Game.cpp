@@ -18,7 +18,12 @@ void Game::init()
 	
 	graphics.init();
 
-	graphics.loadTitleScreen();
+	currentState = createState(GameStateType::TitleScreen);
+
+	if (currentState) 
+	{
+		currentState->onEnter();
+	}
 }
 
 void Game::run()
@@ -28,6 +33,7 @@ void Game::run()
 		swiWaitForVBlank();
 
 		update();
+		applyPendingTransition();
 		draw();
 	}
 }
@@ -36,47 +42,26 @@ void Game::update()
 {
 	// Retrieve input 
 	scanKeys();
-	unsigned int keys_held = keysHeld();
+	u32 keysHeld = keysHeld();
+	u32 keysDown = keysDown();
+	u32 keysUp = keysUp();
 
-	switch (currentState)
+	if (currentState)
 	{
-		case GameState::TitleScreen:
-			if (keys_held & KEY_A)
-			{
-				graphics.clearBitmapLayer(false, 3, 256, 256, 1);
-				graphics.clearBitmapLayer(true, 3, 256, 256, 1);
-            	transitionTo(GameState::Gameplay);
-			}
-			break;
-		case GameState::SelectSave:
-			break;
-		case GameState::Gameplay:
-			break;
-		case GameState::PauseScreen:
-			break;
-		default:
-			break;
+		currentState->update(keysHeld, keysDown, keysUp);
 	}
 }
 
 void Game::draw()
 {
-	switch (currentState)
+	if (currentState) 
 	{
-		case GameState::TitleScreen:
-			break;
-		case GameState::SelectSave:
-			break;
-		case GameState::Gameplay:
-			break;
-		case GameState::PauseScreen:
-			break;
-		default:
-			break;
-	}
+        currentState->renderMain();
+        currentState->renderSub();
+    }
 }
 
-void Game::transitionTo(GameState newState)
+void Game::transitionTo(GameStateType newState)
 {
     pendingState = newState;
     transitionRequested = true;
@@ -84,50 +69,50 @@ void Game::transitionTo(GameState newState)
 
 void Game::applyPendingTransition()
 {
-    if (!transitionRequested) return;
-    transitionRequested = false;
+    if (!transitionRequested) 
+	{
+		return;
+	}
+    
+	transitionRequested = false;
 
-    exitState(currentState);
+    if (currentState)
+	{
+		exitState(*currentState);
+	}
 
-    currentState = pendingState;
+    currentState = createState(pendingState);
 
-    enterState(currentState);
+    if (currentState)
+	{
+		enterState(*currentState);
+	}
 }
 
-void Game::exitState(GameState state)
+unique_ptr<State> Game::createState(GameStateType state)
 {
-    // spriteManagerMain.clear();
-    // spriteManagerSub.clear();
-    // textLayer.clearAll();
-
-    switch (state)
+	switch (state)
 	{
-		case GameState::TitleScreen:
+		case GameStateType::TitleScreen:
 			break;
-		case GameState::SelectSave:
+		case GameStateType::SelectSave:
 			break;
-		case GameState::Gameplay:
+		case GameStateType::Gameplay:
 			break;
-		case GameState::PauseScreen:
+		case GameStateType::PauseScreen:
 			break;
 		default:
+			return nullptr;
 			break;
 	}
 }
 
-void Game::enterState(GameState state)
+void Game::exitState(State& state)
 {
-    switch (state)
-	{
-		case GameState::TitleScreen:
-			break;
-		case GameState::SelectSave:
-			break;
-		case GameState::Gameplay:
-			break;
-		case GameState::PauseScreen:
-			break;
-		default:
-			break;
-	}
+    state.onExit();
+}
+
+void Game::enterState(State& state)
+{
+    state.onEnter();
 }

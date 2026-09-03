@@ -9,26 +9,34 @@
 #pragma once
 
 #include "core/GraphicsManager.h"
-#include "GameState.h"
+#include "core/TextLayer.h"
+#include "core/SpriteManager.h"
+#include "state/GameStateType.h"
+#include "state/State.h"
+
+using namespace std;
 
 class Game {
 	public:
 		void init();
 		void run();
 
-		void transitionTo(GameState newState);
+		void transitionTo(GameStateType newState);
 	private:
 		void update();
 		void draw();
 
 		void applyPendingTransition();
+		State createState(GameStateType state);
+		void enterState(State state);
+		void exitState(State state);
 
-		void enterState(GameState state);
-		void exitState(GameState state);
-
-		GameState currentState = GameState::TitleScreen;
-    	GameState pendingState = GameState::TitleScreen;
+		unique_ptr<State> currentState;
+    	GameStateType pendingState;
     	bool transitionRequested = false;
 
 		GraphicsManager graphics;
+		SpriteManager spriteMgrMain;
+		SpriteManager spriteMgrSub;
+		TextLayer textLayer;
 };
