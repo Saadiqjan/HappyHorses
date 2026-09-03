@@ -10,6 +10,10 @@
 
 #include <nds.h>
 
+#include "../core/SpriteManager.h"
+#include "../core/TextLayer.h"
+#include "../core/GraphicsManager.h"
+
 class State {
     public:
         virtual ~State() = default;

@@ -10,7 +10,7 @@
 
 #include "State.h"
 
-class MenuState {
+class MenuState : public State {
     public:
         MenuState(std::vector<MenuEntry> entries,
                   SpriteManager* spriteMgr,
