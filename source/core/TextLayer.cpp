@@ -8,7 +8,11 @@
 
 #include "core/TextLayer.h"
 
-// TextLayer.cpp
+TextLayer::TextLayer()
+    : mapBuffer(nullptr), mapWidthTiles(0), firstChar(' ')
+{
+}
+
 TextLayer::TextLayer(u16* mapBuffer, int mapWidthTiles, char firstChar)
     : mapBuffer(mapBuffer), mapWidthTiles(mapWidthTiles), firstChar(firstChar)
 {

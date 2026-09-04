@@ -13,6 +13,7 @@
 class TextLayer
 {
 public:
+    TextLayer();
     TextLayer(u16* mapBuffer, int mapWidthTiles, char firstChar = ' ');
 
     void drawText(int tileX, int tileY, const std::string& text);
@@ -20,6 +21,8 @@ public:
     void clearRow(int tileY, int startTileX, int lengthTiles);
     void clear();
 
+    void setMapBuffer(u16* mapBuffer);
+    void setMapWidthTiles(int mapWidthTiles);
 private:
     u16* mapBuffer;
     int mapWidthTiles;
