@@ -18,6 +18,8 @@ using namespace std;
 
 class Game {
 	public:
+		Game();
+
 		void init();
 		void run();
 
@@ -27,16 +29,16 @@ class Game {
 		void draw();
 
 		void applyPendingTransition();
-		State createState(GameStateType state);
-		void enterState(State state);
-		void exitState(State state);
+		unique_ptr<State> createState(GameStateType state);
+		void enterState(State& state);
+		void exitState(State& state);
 
 		unique_ptr<State> currentState;
     	GameStateType pendingState;
     	bool transitionRequested = false;
 
 		GraphicsManager graphics;
-		SpriteManager spriteMgrMain;
-		SpriteManager spriteMgrSub;
+		SpriteManager spriteMgrMain{&oamMain};
+		SpriteManager spriteMgrSub{&oamSub};
 		TextLayer textLayer;
 };

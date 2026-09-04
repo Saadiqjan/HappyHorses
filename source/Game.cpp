@@ -10,6 +10,11 @@
 
 #include <nds.h>
 
+Game::Game()
+{
+	
+}
+
 void Game::init()
 {
 	powerOn(POWER_ALL_2D);
@@ -42,13 +47,13 @@ void Game::update()
 {
 	// Retrieve input 
 	scanKeys();
-	u32 keysHeld = keysHeld();
-	u32 keysDown = keysDown();
-	u32 keysUp = keysUp();
+	u32 keys_Held = keysHeld();
+	u32 keys_Down = keysDown();
+	u32 keys_Up = keysUp();
 
 	if (currentState)
 	{
-		currentState->update(keysHeld, keysDown, keysUp);
+		currentState->update(keys_Held, keys_Down, keys_Up);
 	}
 }
 
@@ -107,12 +112,12 @@ unique_ptr<State> Game::createState(GameStateType state)
 	}
 }
 
-void Game::exitState(State& state)
-{
-    state.onExit();
-}
-
 void Game::enterState(State& state)
 {
     state.onEnter();
+}
+
+void Game::exitState(State& state)
+{
+    state.onExit();
 }
