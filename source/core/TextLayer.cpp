@@ -45,3 +45,18 @@ void TextLayer::clearRow(int tileY, int startTileX, int lengthTiles)
     for (int i = 0; i < lengthTiles; ++i)
         mapBuffer[tileY * mapWidthTiles + (startTileX + i)] = 0;
 }
+
+void TextLayer::setMapBuffer(u16* mapBuffer)
+{
+    this->mapBuffer = mapBuffer;
+}
+
+void TextLayer::setMapWidthTiles(int mapWidthTiles)
+{
+    this->mapWidthTiles = mapWidthTiles;
+}
+
+void TextLayer::setFirstChar(char firstChar)
+{
+    this->firstChar = firstChar;
+}

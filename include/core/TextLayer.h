@@ -23,6 +23,7 @@ public:
 
     void setMapBuffer(u16* mapBuffer);
     void setMapWidthTiles(int mapWidthTiles);
+    void setFirstChar(char firstChar);
 private:
     u16* mapBuffer;
     int mapWidthTiles;
