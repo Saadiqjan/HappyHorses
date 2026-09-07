@@ -18,7 +18,7 @@ using namespace std;
 inline const vector<MenuEntry> mainMenuEntries = {
     { "New game", btnCfgNewGame, GameStateType::Gameplay },
     { "Continue", btnCfgContinue, GameStateType::Gameplay },
-    { "Settings", btnCfgSettings, GameStateType::settingsS }
+    { "Settings", btnCfgSettings, GameStateType::Settings }
 };
 
 inline const vector<MenuEntry> saveMenuEntries = {

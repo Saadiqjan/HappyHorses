@@ -19,4 +19,4 @@ struct MenuEntry {
     string label;
     SpriteConfig buttonConfig;
     GameStateType target;
-}
+};
