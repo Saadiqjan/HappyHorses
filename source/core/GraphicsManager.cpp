@@ -105,6 +105,11 @@ void GraphicsManager::loadTitleScreen()
     );
 }
 
+void GraphicsManager::unloadTitleScreen()
+{
+    
+}
+
 int GraphicsManager::bgId(bool sub, int layer) const
 {
     return sub ? bgIdsSub[layer] : bgIdsMain[layer];

@@ -19,6 +19,7 @@ class GraphicsManager {
         void update();
 
         void loadTitleScreen();
+        void unloadTitleScreen();
 
         int bgId(bool sub, int layer) const;
 
