@@ -19,7 +19,8 @@ class Menu {
     public:
         Menu(SpriteManager& spriteMgr, TextLayer& textLayer);
 
-        Button& addButton();
+        Button* addButton(const std::string& label, const SpriteConfig& cfg,
+                         SpriteManager* spriteMgr, TextLayer* textLayer);
 
         void update(int touchX, int touchY, bool touching, bool justReleased);
         void draw();

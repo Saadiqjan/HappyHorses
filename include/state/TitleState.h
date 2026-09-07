@@ -19,8 +19,8 @@ class TitleState : public State {
         void onEnter() override;
         void onExit() override;
         void update(u32 keysHeld, u32 keysDown, u32 keysUp) override;
-        void renderTop() override;
-        void renderBottom() override;
+        //void renderTop() override;
+        //void renderBottom() override;
     private:
         Menu menu;
         SpriteManager* spriteMgr;

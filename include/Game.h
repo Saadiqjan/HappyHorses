@@ -13,6 +13,7 @@
 #include "core/SpriteManager.h"
 #include "state/GameStateType.h"
 #include "state/State.h"
+#include "state/TitleState.h"
 
 using namespace std;
 

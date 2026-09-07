@@ -6,14 +6,13 @@
  * Description: title state
  */
 
-#include "TitleState.h"
+#include "state/TitleState.h"
 
 #include "../data/MenuEntries.h"
 
 TitleState::TitleState(SpriteManager* spriteMgr, TextLayer* textLayer, GraphicsManager* gfxMgr)
-    : spriteMgr(spriteMgr), textLayer(textLayer), gfxMgr(gfxMgr)
+    : spriteMgr(spriteMgr), textLayer(textLayer), gfxMgr(gfxMgr), menu(spriteMgr, textLayer)
 {
-
 }
 
 void TitleState::onEnter() 
@@ -29,7 +28,7 @@ void TitleState::onEnter()
 void TitleState::onExit() {
     menu.clear();
     spriteMgr->clear();
-    textLayer->clearAll();
+    textLayer->clear();
     gfxMgr->unloadTitleScreen();
 }
 

@@ -40,6 +40,11 @@ void TextLayer::drawTextCentered(int pixelBoxX, int pixelBoxY, int pixelBoxW, in
     drawText(tileX, tileY, text);
 }
 
+void TextLayer::clear()
+{
+    
+}
+
 void TextLayer::clearRow(int tileY, int startTileX, int lengthTiles)
 {
     for (int i = 0; i < lengthTiles; ++i)

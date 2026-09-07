@@ -13,10 +13,20 @@ Menu::Menu(SpriteManager& mgr, TextLayer& layer)
 {
 }
 
-Button& Menu::addButton()
+Button* Menu::addButton(const std::string& label, const SpriteConfig& cfg,
+                         SpriteManager* spriteMgr, TextLayer* textLayer)
 {
-    buttons.push_back(std::make_unique<Button>(spriteMgr, textLayer));
-    return *buttons.back();
+    auto button = std::make_unique<Button>(&spriteMgr, &textLayer);
+
+    if (!button->createSingle(cfg, cfg.width, cfg.height))
+        return nullptr;
+
+    button->setPosition(cfg.x, cfg.y);
+    button->setLabel(label);
+
+    Button* raw = button.get();
+    buttons.push_back(std::move(button));
+    return raw;
 }
 
 void Menu::update(int touchX, int touchY, bool touching, bool justReleased)

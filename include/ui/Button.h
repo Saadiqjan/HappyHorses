@@ -38,7 +38,7 @@ class Button {
         void finalizeMulti(int width, int height);
 
         void setPosition(int x, int y);
-        void setLabel(const std::string& text);
+        void setLabel(const std::string& text) { label = text; };
         void setPressed(bool pressed);
 
         void clear();

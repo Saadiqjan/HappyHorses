@@ -23,7 +23,8 @@ void Game::init()
 	
 	graphics.init();
 
-	currentState = createState(GameStateType::TitleScreen);
+	//currentState = createState(GameStateType::TitleScreen);
+	graphics.loadTitleScreen();
 
 	if (currentState) 
 	{
@@ -99,6 +100,7 @@ unique_ptr<State> Game::createState(GameStateType state)
 	switch (state)
 	{
 		case GameStateType::TitleScreen:
+			return make_unique<TitleState>(&spriteMgrMain, &textLayer, &graphics);
 			break;
 		case GameStateType::SelectSave:
 			break;
