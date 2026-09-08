@@ -30,6 +30,26 @@ struct SpriteConfig
     int frameCount         = 1;
 };
 
+inline void spriteSizePixels(SpriteSize size, int& outW, int& outH)
+{
+    switch (size)
+    {
+        case SpriteSize_8x8:   outW = 8;  outH = 8;  break;
+        case SpriteSize_16x16: outW = 16; outH = 16; break;
+        case SpriteSize_32x32: outW = 32; outH = 32; break;
+        case SpriteSize_64x64: outW = 64; outH = 64; break;
+        case SpriteSize_16x8:  outW = 16; outH = 8;  break;
+        case SpriteSize_32x8:  outW = 32; outH = 8;  break;
+        case SpriteSize_32x16: outW = 32; outH = 16; break;
+        case SpriteSize_64x32: outW = 64; outH = 32; break;
+        case SpriteSize_8x16:  outW = 8;  outH = 16; break;
+        case SpriteSize_8x32:  outW = 8;  outH = 32; break;
+        case SpriteSize_16x32: outW = 16; outH = 32; break;
+        case SpriteSize_32x64: outW = 32; outH = 64; break;
+        default: outW = 0; outH = 0; break;
+    }
+}
+
 class Sprite
 {
 public:
