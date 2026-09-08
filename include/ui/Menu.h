@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "../ui/Button.h"
+#include "../graphics/Sprite.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ class Menu {
         Menu(SpriteManager& spriteMgr, TextLayer& textLayer);
 
         Button* addButton(const std::string& label, const SpriteConfig& cfg,
-                         SpriteManager* spriteMgr, TextLayer* textLayer);
+                          int x, int y, SpriteManager* spriteMgr, TextLayer* textLayer);
 
         void update(int touchX, int touchY, bool touching, bool justReleased);
         void draw();

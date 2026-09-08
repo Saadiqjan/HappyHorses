@@ -11,7 +11,7 @@
 #include "../data/MenuEntries.h"
 
 TitleState::TitleState(SpriteManager* spriteMgr, TextLayer* textLayer, GraphicsManager* gfxMgr)
-    : spriteMgr(spriteMgr), textLayer(textLayer), gfxMgr(gfxMgr), menu(spriteMgr, textLayer)
+    : menu(*spriteMgr, *textLayer), spriteMgr(spriteMgr), textLayer(textLayer), gfxMgr(gfxMgr)
 {
 }
 
@@ -21,7 +21,7 @@ void TitleState::onEnter()
 
     for (const auto& entry : mainMenuEntries) 
     {
-        menu.addButton(entry.label, entry.buttonConfig, spriteMgr, textLayer);
+        menu.addButton(entry.label, entry.buttonConfig, entry.x, entry.y, spriteMgr, textLayer);
     }    
 }
 

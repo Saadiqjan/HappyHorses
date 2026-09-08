@@ -14,14 +14,18 @@ Menu::Menu(SpriteManager& mgr, TextLayer& layer)
 }
 
 Button* Menu::addButton(const std::string& label, const SpriteConfig& cfg,
-                         SpriteManager* spriteMgr, TextLayer* textLayer)
+                        int x, int y, SpriteManager* spriteMgr, TextLayer* textLayer)
 {
-    auto button = std::make_unique<Button>(&spriteMgr, &textLayer);
+    auto button = std::make_unique<Button>(*spriteMgr, *textLayer);
 
-    if (!button->createSingle(cfg, cfg.width, cfg.height))
+    int w, h;
+
+    spriteSizePixels(cfg.size, w, h);
+
+    if (!button->createSingle(cfg, w, h))
         return nullptr;
 
-    button->setPosition(cfg.x, cfg.y);
+    button->setPosition(x, y);
     button->setLabel(label);
 
     Button* raw = button.get();

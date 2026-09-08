@@ -16,13 +16,13 @@
 using namespace std;
 
 inline const vector<MenuEntry> mainMenuEntries = {
-    { "New game", btnCfgNewGame, GameStateType::Gameplay },
-    { "Continue", btnCfgContinue, GameStateType::Gameplay },
-    { "Settings", btnCfgSettings, GameStateType::Settings }
+    { "New game", btnCfgNewGame, 96, 24, GameStateType::Gameplay },
+    { "Continue", btnCfgContinue, 96, 80, GameStateType::Gameplay },
+    { "Settings", btnCfgSettings, 96, 136, GameStateType::Settings }
 };
 
 inline const vector<MenuEntry> saveMenuEntries = {
-    { "Save 1", btnCfgSave1, GameStateType::Gameplay },
-    { "Save 2", btnCfgSave2, GameStateType::Gameplay },
-    { "Save 3", btnCfgSave3, GameStateType::Gameplay }
+    { "Save 1", btnCfgSave1, 96, 24, GameStateType::Gameplay },
+    { "Save 2", btnCfgSave2, 96, 80, GameStateType::Gameplay },
+    { "Save 3", btnCfgSave3, 96, 136, GameStateType::Gameplay }
 };
