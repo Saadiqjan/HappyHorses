@@ -11,6 +11,10 @@
 #include "State.h"
 #include "../ui/Menu.h"
 #include "../data/MenuEntries.h"
+#include "../state/GameStateType.h"
+#include <optional>
+
+using namespace std;
 
 class TitleState : public State {
     public:
@@ -18,9 +22,7 @@ class TitleState : public State {
 
         void onEnter() override;
         void onExit() override;
-        void update(u32 keysHeld, u32 keysDown, u32 keysUp) override;
-        //void renderTop() override;
-        //void renderBottom() override;
+        std::optional<GameStateType> update(u32 keysHeld, u32 keysDown, u32 keysUp) override;
     private:
         Menu menu;
         SpriteManager* spriteMgr;

@@ -23,8 +23,7 @@ void Game::init()
 	
 	graphics.init();
 
-	//currentState = createState(GameStateType::TitleScreen);
-	graphics.loadTitleScreen();
+	currentState = createState(GameStateType::TitleScreen);
 
 	if (currentState) 
 	{
@@ -54,7 +53,10 @@ void Game::update()
 
 	if (currentState)
 	{
-		currentState->update(keys_Held, keys_Down, keys_Up);
+		if (auto next = currentState->update(keys_Held, keys_Down, keys_Up))
+		{
+    		transitionTo(*next);
+		}
 	}
 }
 
@@ -62,8 +64,8 @@ void Game::draw()
 {
 	if (currentState) 
 	{
-        currentState->renderMain();
-        currentState->renderSub();
+		spriteMgrMain.updateAndDraw();
+		spriteMgrSub.updateAndDraw();
     }
 }
 

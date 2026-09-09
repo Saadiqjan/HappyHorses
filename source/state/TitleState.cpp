@@ -32,7 +32,7 @@ void TitleState::onExit() {
     gfxMgr->unloadTitleScreen();
 }
 
-void TitleState::update(u32 keysHeld, u32 keysDown, u32 keysUp) 
+optional<GameStateType> TitleState::update(u32 keysHeld, u32 keysDown, u32 keysUp) 
 {
     touchPosition touch;
     touchRead(&touch);
@@ -41,7 +41,8 @@ void TitleState::update(u32 keysHeld, u32 keysDown, u32 keysUp)
 
     if (menu.selectedIndex() >= 0) 
     {
-        const MenuEntry& entry = mainMenuEntries[menu.selectedIndex()];
-        game->transitionTo(entry.target);
+        return mainMenuEntries[menu.selectedIndex()].target;
     }
+
+    return nullopt;
 }

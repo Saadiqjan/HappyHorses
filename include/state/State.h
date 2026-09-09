@@ -13,6 +13,10 @@
 #include "../core/SpriteManager.h"
 #include "../core/TextLayer.h"
 #include "../core/GraphicsManager.h"
+#include "../state/GameStateType.h"
+#include <optional>
+
+using namespace std;
 
 class State {
     public:
@@ -23,7 +27,7 @@ class State {
         virtual void onPause() {}
         virtual void onResume() {}
 
-        virtual void update(u32 keysHeld, u32 keysDown, u32 keysUp) = 0;
+        virtual std::optional<GameStateType> update(u32 keysHeld, u32 keysDown, u32 keysUp) = 0;
         virtual void renderMain() {}
         virtual void renderSub() {}
 };
