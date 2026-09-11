@@ -25,6 +25,9 @@ struct SpriteConfig
     SpriteSize size               = SpriteSize_32x32;
     SpriteColorFormat colorFormat = SpriteColorFormat_256Color;
 
+    const void* paletteData = nullptr;
+    int paletteLength = 0;
+
     const void* tiles      = nullptr;
     int tileLength    = 0;
     int frameCount         = 1;
