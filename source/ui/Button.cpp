@@ -61,7 +61,10 @@ void Button::clear()
 
 bool Button::createSingle(const SpriteConfig& cfg, int w, int h)
 {
-    Sprite* s = spriteMgr->createSprite(cfg);
+    SpriteConfig resolvedCfg = cfg;
+    resolvedCfg.paletteIdx = spriteMgr->loadPalette(cfg.paletteData, cfg.paletteLength, cfg.colorFormat);
+
+    Sprite* s = spriteMgr->createSprite(resolvedCfg);
     if (!s) return false;
 
     renderable = s;

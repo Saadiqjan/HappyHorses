@@ -52,7 +52,7 @@ int SpriteManager::loadPalette(const void* paletteData, size_t lengthBytes, Spri
     }
 }
 
-void SpriteManager:freePalette(int slot, SpriteColorFormat format)
+void SpriteManager::freePalette(int slot, SpriteColorFormat format)
 {
     if (format == SpriteColorFormat_256Color)
     {

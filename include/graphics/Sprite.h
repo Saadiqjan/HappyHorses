@@ -11,11 +11,11 @@
 
 struct SpriteConfig
 {
-    OamState* oam       = nullptr;
-    int spriteId         = -1;
-    int affineId         = -1;
+    OamState* oam         = nullptr;
+    int spriteId          = -1;
+    int affineId          = -1;
     bool affine           = false;
-    int paletteIdx       = 0;
+    int paletteIdx        = 0;
     ObjPriority priority = OBJPRIORITY_0;
     bool hidden           = false;
     bool doubleSize       = false;
@@ -26,11 +26,11 @@ struct SpriteConfig
     SpriteColorFormat colorFormat = SpriteColorFormat_256Color;
 
     const void* paletteData = nullptr;
-    int paletteLength = 0;
+    int paletteLength       = 0;
 
-    const void* tiles      = nullptr;
-    int tileLength    = 0;
-    int frameCount         = 1;
+    const void* tiles       = nullptr;
+    int tileLength          = 0;
+    int frameCount          = 1;
 };
 
 inline void spriteSizePixels(SpriteSize size, int& outW, int& outH)
