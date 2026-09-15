@@ -7,6 +7,7 @@
  */
 
 #include "ui/Menu.h"
+#include <nds.h>
 
 Menu::Menu(SpriteManager& mgr, TextLayer& layer)
     : spriteMgr(mgr), textLayer(layer)
@@ -42,6 +43,7 @@ void Menu::update(int touchX, int touchY, bool touching, bool justReleased)
         if (!buttons[i]->isLoaded()) continue;
 
         bool over = buttons[i]->contains(touchX, touchY);
+
         buttons[i]->setPressed(over && touching);
 
         if (over && justReleased)

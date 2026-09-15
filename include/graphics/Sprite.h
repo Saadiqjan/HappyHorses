@@ -8,6 +8,7 @@
 
 #pragma once
 #include <nds.h>
+#include <vector>
 
 struct SpriteConfig
 {
@@ -89,7 +90,7 @@ public:
 
     int x() const { return posX; }
     int y() const { return posY; }
-    bool isLoaded() const { return gfx != nullptr; }
+    bool isLoaded() const { !frameGfx.empty() }
 
     int getSpriteId() const { return spriteId; }
 private:
@@ -115,7 +116,7 @@ private:
     int scaleX  = 1 << 8; // identity scale, 20.12-ish fixed point (verify against oamRotateScale)
     int scaleY  = 1 << 8;
 
-    void* gfx              = nullptr;
+    std::vector<void*> frameGfx; 
     int   frameSizeBytes   = 0;
     int   numFrames         = 1;
     int   currentFrame      = 0;

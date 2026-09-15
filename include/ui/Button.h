@@ -45,6 +45,11 @@ class Button {
 
         void draw();
 
+        int getX() { return x;};
+        int getY() { return y; };
+        int getWidth() { return width; };
+        int getHeight() { return height; };
+
         bool contains(int touchX, int touchY) const;
         bool isLoaded() const { return !holds_alternative<monostate>(renderable); }
     private:

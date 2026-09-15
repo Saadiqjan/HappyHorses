@@ -50,7 +50,6 @@ Sprite& Sprite::operator=(Sprite&& other) noexcept
         numFrames        = other.numFrames;
         currentFrame     = other.currentFrame;
 
-        // Prevent the moved-from object from freeing gfx we now own
         other.gfx = nullptr;
         other.oam = nullptr;
     }
@@ -59,7 +58,7 @@ Sprite& Sprite::operator=(Sprite&& other) noexcept
 
 void Sprite::init(const SpriteConfig& cfg)
 {
-    unload(); // safety: if re-init'ing an already-loaded sprite, free old gfx first
+    unload();
 
     oam         = cfg.oam;
     spriteId    = cfg.spriteId;
@@ -75,37 +74,41 @@ void Sprite::init(const SpriteConfig& cfg)
     size        = cfg.size;
     colorFormat = cfg.colorFormat;
 
-    numFrames       = cfg.frameCount > 0 ? cfg.frameCount : 1;
-    frameSizeBytes  = cfg.tileLength / numFrames;
-    currentFrame    = 0;
+    numFrames      = cfg.frameCount > 0 ? cfg.frameCount : 1;
+    frameSizeBytes = cfg.tileLength / numFrames;
+    currentFrame   = 0;
 
-    gfx = oamAllocateGfx(oam, size, colorFormat);
-
-    dmaCopyHalfWords(SPRITE_DMA_CHANNEL,
-                      cfg.tiles,
-                      gfx,
-                      cfg.tileLength);
+    frameGfx.resize(numFrames);
+    for (int i = 0; i < numFrames; ++i)
+    {
+        frameGfx[i] = oamAllocateGfx(oam, size, colorFormat);   // one full-size block per frame
+        const u8* src = static_cast<const u8*>(cfg.tiles) + (i * frameSizeBytes);
+        dmaCopyHalfWords(SPRITE_DMA_CHANNEL, src, frameGfx[i], frameSizeBytes);
+    }
 }
 
 void Sprite::unload()
 {
-    if (gfx && oam)
+    for (void* g : frameGfx)
     {
-        oamFreeGfx(oam, gfx);
+        if (g) 
+        {
+            oamFreeGfx(oam, g);
+        }
     }
+    
+    frameGfx.clear();
     gfx = nullptr;
 }
 
 void Sprite::draw()
 {
-    if (!oam || !gfx) return; // not loaded, nothing to draw
+    if (!oam || frameGfx.isEmpty()) return; 
 
     if (affine)
     {
         oamRotateScale(oam, affineId, scaleX, scaleY, angle);
     }
-
-    u8* frameGfx = static_cast<u8*>(gfx) + (currentFrame * frameSizeBytes);
 
     oamSet(oam,
            spriteId,
@@ -113,7 +116,7 @@ void Sprite::draw()
            priority,
            paletteIdx,
            size, colorFormat,
-           frameGfx,
+           frameGfx[currentFrame],
            affineId,
            doubleSize,
            hidden,

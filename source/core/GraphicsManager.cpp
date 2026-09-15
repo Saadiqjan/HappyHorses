@@ -107,7 +107,8 @@ void GraphicsManager::loadTitleScreen()
 
 void GraphicsManager::unloadTitleScreen()
 {
-    
+    clearBitmapLayer(false, 3, 256, 192, 1);
+    clearBitmapLayer(true, 3, 256, 192, 1);
 }
 
 int GraphicsManager::bgId(bool sub, int layer) const
@@ -118,7 +119,7 @@ int GraphicsManager::bgId(bool sub, int layer) const
 void GraphicsManager::clearBitmapLayer(bool sub, int layer, int widthPx, int heightPx, int bytesPerPixel)
 {
     int id = bgId(sub, layer);
-    if (id == -1) return; // not initialized — no-op rather than crash on a null-ish pointer
+    if (id == -1) return;
 
     dmaFillWords(0, bgGetGfxPtr(id), widthPx * heightPx * bytesPerPixel);
 }

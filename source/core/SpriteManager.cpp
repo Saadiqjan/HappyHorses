@@ -134,6 +134,7 @@ void SpriteManager::clear()
 {
     sprites.clear();
     metaSprites.clear();
+    clearPalettes();
     oamMgr = OamManager(oam);
 }
 
