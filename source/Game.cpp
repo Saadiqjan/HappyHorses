@@ -25,8 +25,6 @@ void Game::init()
 
 	currentState = createState(GameStateType::TitleScreen);
 
-	consoleDemoInit();
-
 	if (currentState) 
 	{
 		currentState->onEnter();

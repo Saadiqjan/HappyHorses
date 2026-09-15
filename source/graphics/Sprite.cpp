@@ -45,12 +45,12 @@ Sprite& Sprite::operator=(Sprite&& other) noexcept
         angle       = other.angle;
         scaleX      = other.scaleX;
         scaleY      = other.scaleY;
-        gfx             = other.gfx;
+        frameGfx    = other.frameGfx;
         frameSizeBytes  = other.frameSizeBytes;
-        numFrames        = other.numFrames;
-        currentFrame     = other.currentFrame;
+        numFrames       = other.numFrames;
+        currentFrame    = other.currentFrame;
 
-        other.gfx = nullptr;
+        other.frameGfx.clear();
         other.oam = nullptr;
     }
     return *this;
@@ -96,14 +96,13 @@ void Sprite::unload()
             oamFreeGfx(oam, g);
         }
     }
-    
+
     frameGfx.clear();
-    gfx = nullptr;
 }
 
 void Sprite::draw()
 {
-    if (!oam || frameGfx.isEmpty()) return; 
+    if (!oam || frameGfx.empty()) return; 
 
     if (affine)
     {

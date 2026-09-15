@@ -90,7 +90,7 @@ public:
 
     int x() const { return posX; }
     int y() const { return posY; }
-    bool isLoaded() const { !frameGfx.empty() }
+    bool isLoaded() const { return !frameGfx.empty(); }
 
     int getSpriteId() const { return spriteId; }
 private:
